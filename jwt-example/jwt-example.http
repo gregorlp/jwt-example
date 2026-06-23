@@ -1,0 +1,44 @@
+# Archivo de pruebas HTTP para Visual Studio / Rider / extensión REST Client.
+# Ejecutá cada bloque con "Send Request" estando la API levantada (dotnet run).
+
+# Perfil https (por defecto en launchSettings)
+# @host = https://localhost:7294
+
+# Perfil http alternativo (descomentar si corrés sin HTTPS)
+# @host = http://localhost:5136
+@host = http://localhost:5001
+
+###############################################################################
+# 1) Login — obtiene un JWT
+###############################################################################
+
+# @name login
+POST {{host}}/usuarios/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "demo",
+  "password": "demo"
+}
+
+###############################################################################
+# 2) Endpoint protegido — usa el token del login anterior
+#
+# La línea de abajo toma automáticamente "token" del JSON de respuesta del
+# request @name login (soportado en REST Client de VS Code y Rider).
+# Si no funciona en tu IDE, pegá el token manualmente en @token.
+###############################################################################
+
+@token = {{login.response.body.$.token}}
+
+GET {{host}}/usuarios/test
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+# Variante manual: reemplazá PEGAR_TOKEN_AQUI por el JWT completo del login
+# @tokenManual = PEGAR_TOKEN_AQUI
+#
+# GET {{host}}/usuarios/test
+# Authorization: Bearer {{tokenManual}}
