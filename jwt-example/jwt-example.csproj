@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>jwt_example</RootNamespace>
     <UserSecretsId>9bd1f6ff-42c5-49ba-82e9-532d43dfdd7c</UserSecretsId>
+    <InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.AspNetCore.OpenApi.Generated</InterceptorsNamespaces>
   </PropertyGroup>
 
   <ItemGroup>
