@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>jwt_example</RootNamespace>
+    <UserSecretsId>9bd1f6ff-42c5-49ba-82e9-532d43dfdd7c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

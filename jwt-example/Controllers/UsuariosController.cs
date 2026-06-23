@@ -23,17 +23,20 @@ namespace jwt_example.Controllers
 
         [Authorize]
         [HttpGet("test")]
-        public IActionResult TestAutentication()
+        public IActionResult TestAuthentication()
         {
             return Ok(new
             {
-                message = "Token válido",
+                message = "Valid token",
                 claims = User.Claims.Select(c => new { c.Type, c.Value })
             });
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginViewModel model) {
+        public IActionResult Login(LoginViewModel model)
+        {
+            // NOTE: Credential validation omitted intentionally.
+            // In production, validate against your user store here.
 
             var key = new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(_jwt.SecretKey));
@@ -46,7 +49,7 @@ namespace jwt_example.Controllers
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, "123"),
-                    new Claim(JwtRegisteredClaimNames.Email, "usuario@test.com"),
+                    new Claim(JwtRegisteredClaimNames.Email, "user@test.com"),
                     new Claim("role", "Admin")
                 }),
 

@@ -1,15 +1,15 @@
-# Archivo de pruebas HTTP para Visual Studio / Rider / extensión REST Client.
-# Ejecutá cada bloque con "Send Request" estando la API levantada (dotnet run).
+# HTTP test file for Visual Studio / Rider / REST Client extension.
+# Run each block with "Send Request" while the API is running (dotnet run).
 
-# Perfil https (por defecto en launchSettings)
+# HTTPS profile (default in launchSettings)
 # @host = https://localhost:7294
 
-# Perfil http alternativo (descomentar si corrés sin HTTPS)
+# Alternative HTTP profile (uncomment if running without HTTPS)
 # @host = http://localhost:5136
 @host = http://localhost:5001
 
 ###############################################################################
-# 1) Login — obtiene un JWT
+# 1) Login — obtain a JWT
 ###############################################################################
 
 # @name login
@@ -23,11 +23,11 @@ Accept: application/json
 }
 
 ###############################################################################
-# 2) Endpoint protegido — usa el token del login anterior
+# 2) Protected endpoint — uses the token from the previous login
 #
-# La línea de abajo toma automáticamente "token" del JSON de respuesta del
-# request @name login (soportado en REST Client de VS Code y Rider).
-# Si no funciona en tu IDE, pegá el token manualmente en @token.
+# The line below automatically reads "token" from the @name login response JSON
+# (supported in VS Code REST Client and Rider).
+# If your IDE does not support this, paste the token manually into @token.
 ###############################################################################
 
 @token = {{login.response.body.$.token}}
@@ -37,8 +37,8 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 ###
-# Variante manual: reemplazá PEGAR_TOKEN_AQUI por el JWT completo del login
-# @tokenManual = PEGAR_TOKEN_AQUI
+# Manual fallback: replace PASTE_TOKEN_HERE with the full JWT from login
+# @tokenManual = PASTE_TOKEN_HERE
 #
 # GET {{host}}/usuarios/test
 # Authorization: Bearer {{tokenManual}}
